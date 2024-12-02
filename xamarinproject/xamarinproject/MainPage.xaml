@@ -1,0 +1,67 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xamarinproject.MainPage">
+
+    <StackLayout Padding="10">
+        <!-- Logo Button for CRUD -->
+        <Image Source="crud_logo.png" 
+               HeightRequest="50" 
+               WidthRequest="50" 
+               HorizontalOptions="Start"
+               VerticalOptions="Start">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCrudLogoClicked" />
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Label Text="Product List" FontSize="24" HorizontalOptions="Center" />
+
+        <!-- Existing Product List -->
+        <ListView x:Name="productListView"
+          HasUnevenRows="True"
+          SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame CornerRadius="10" 
+                       Padding="10" 
+                       Margin="5"
+                       BackgroundColor="LightGray"
+                       HasShadow="True">
+                            <StackLayout>
+                                <Image Source="{Binding ImageUrl}" 
+                               HeightRequest="150" 
+                               WidthRequest="150" 
+                               Aspect="AspectFill"
+                               HorizontalOptions="Center" />
+                                <Label Text="{Binding Name}" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               VerticalOptions="Center" />
+                                <Label Text="{Binding Price, StringFormat='${0:F2}'}" 
+                               FontSize="16" 
+                               TextColor="Green"
+                               VerticalOptions="Center" />
+
+                                <!-- Quantity Entry -->
+                                <Entry x:Name="quantityEntry"
+                               Placeholder="Enter Quantity"
+                               Keyboard="Numeric"
+                               HorizontalOptions="FillAndExpand" />
+
+                                <!-- Add to Cart Button -->
+                                <Button Text="Add to Cart"
+                                Clicked="OnAddToCartClicked"
+                                BindingContext="{Binding}" />
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        <!-- View Cart Button -->
+        <Button Text="View Cart" Clicked="OnViewCartClicked" />
+    </StackLayout>
+</ContentPage>

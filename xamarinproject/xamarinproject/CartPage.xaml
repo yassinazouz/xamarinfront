@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xamarinproject.CartPage">
+
+    <StackLayout Padding="10">
+        <Label Text="Your Cart" FontSize="24" HorizontalOptions="Center" />
+
+        <!-- ListView for displaying cart items -->
+        <ListView x:Name="cartListView"
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame CornerRadius="10" 
+                               Padding="10" 
+                               Margin="5"
+                               BackgroundColor="LightGray"
+                               HasShadow="True">
+                            <StackLayout>
+                                <Label Text="{Binding Product.Name}" FontSize="18" FontAttributes="Bold"/>
+                                <Label Text="{Binding Product.Price, StringFormat='${0:F2}'}" FontSize="16"/>
+                                <Label Text="{Binding Quantity}" FontSize="16" TextColor="Gray"/>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Button to go back to main page -->
+        <Button Text="Back to Products" Clicked="OnBackToProductsClicked"/>
+    </StackLayout>
+</ContentPage>

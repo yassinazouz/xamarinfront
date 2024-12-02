@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xamarinproject.CrudPage">
+
+    <StackLayout Padding="10">
+        <Label Text="Manage Products" FontSize="24" HorizontalOptions="Center" />
+
+        <!-- Add Product Button -->
+        <Button Text="Add Product" Clicked="OnAddProductClicked" />
+
+        <!-- Product List -->
+        <ListView x:Name="crudProductListView"
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame CornerRadius="10"
+                               Padding="10"
+                               Margin="5"
+                               BackgroundColor="LightGray"
+                               HasShadow="True">
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
+                                <Label Text="{Binding Price, StringFormat='${0:F2}'}" TextColor="Green" />
+                                
+                                <!-- Edit Button -->
+                                <Button Text="Edit" Clicked="OnEditProductClicked" CommandParameter="{Binding}" />
+                                
+                                <!-- Delete Button -->
+                                <Button Text="Delete" Clicked="OnDeleteProductClicked" CommandParameter="{Binding}" />
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
